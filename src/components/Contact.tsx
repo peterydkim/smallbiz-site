@@ -187,7 +187,7 @@ export default function Contact() {
               </p>
             )}
             {status === "error" && (
-              <p role="alert" className="text-sm text-red-700 font-medium">
+              <p role="alert" className="text-sm text-destructive font-medium">
                 That didn&apos;t send. Please call {company.phone} or email {company.email}.
               </p>
             )}

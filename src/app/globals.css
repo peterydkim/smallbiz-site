@@ -8,6 +8,9 @@
   --color-accent: #2a5c2a;
   --color-accent-foreground: #ffffff;
   --color-muted: #e0e9e0;
+  --color-muted-foreground: #4a5a4a;
+  --color-destructive: #c0392b;
+  --color-destructive-foreground: #ffffff;
 
   --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-barlow-condensed), var(--font-barlow), sans-serif;

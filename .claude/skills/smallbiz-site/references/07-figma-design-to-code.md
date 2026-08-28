@@ -80,6 +80,38 @@ against the Figma frames instead: `get_screenshot` per section, compare to the b
 check the rendered values against `get_variable_defs` output. Tokens are the objective check —
 a color that doesn't appear in the variable list is a bug.
 
+## Figma Make: what `get_design_context` actually returns
+
+On a `/make/` file it does **not** return inline code. It returns **resource links to the entire
+source tree** — `App.tsx`, `styles/theme.css`, `package.json`, every shadcn/ui component, and
+every bundled image — with the note "Start with App.tsx."
+
+Reading those links needs an MCP client that supports the **resources API**. Some clients don't:
+`ListMcpResourcesTool` returns nothing and reads fail with *"server does not support
+resources."* Check before planning around it.
+
+`forceCode: true` will inline the code instead, but on a Make file that means the whole
+shadcn/ui set — 60+ files. Reach for it only on a small project.
+
+**Fallback when links aren't readable:** the published site serves its compiled stylesheet at
+`/_components/v2/<hash>.css`. Every authored token is in it:
+
+```bash
+curl -s https://NAME.figma.site/_components/v2/<hash>.css |
+  grep -oE ':root\{[^}]*\}' | head -1 | tr ',' '\n' |
+  grep -oE '\-\-[a-z-]+:\s*#[0-9a-fA-F]+' | sort -u
+```
+
+This recovers the **authored** palette, including tokens the rendered page never exercises. On
+the example project it surfaced `--destructive: #c0392b`, which a DOM-only extraction had missed
+because no error state was on screen — a stock Tailwind red had been substituted for it.
+
+Two things this fallback does that DOM extraction can't:
+
+- **Unused tokens.** Anything the design system defines but the page doesn't currently render.
+- **Other themes.** shadcn ships a `.dark` block; the compiled CSS carries it even when the live
+  site only ever uses light.
+
 ## The reverse direction
 
 To push a built page *back* into Figma — handing a designer something to iterate on, or keeping
