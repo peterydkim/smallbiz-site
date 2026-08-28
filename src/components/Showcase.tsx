@@ -65,7 +65,7 @@ export default function Showcase() {
         muted
         playsInline
         preload={index === 0 ? "auto" : "metadata"}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-280 ${
+        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
           visible ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -75,7 +75,7 @@ export default function Showcase() {
       <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black/70 to-transparent pointer-events-none" />
 
       <div
-        className={`absolute bottom-10 left-8 transition-all duration-280 ${
+        className={`absolute bottom-10 left-8 transition-all duration-300 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
         }`}
       >

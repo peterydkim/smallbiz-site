@@ -30,6 +30,7 @@ export default function ProjectCategory({ category }: { category: Category }) {
             width={1600}
             height={1200}
             sizes="(max-width: 1024px) 100vw, 70vw"
+            quality={88}
             priority={category.id === "cat-kitchen"}
             className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-600"
           />
@@ -61,6 +62,7 @@ export default function ProjectCategory({ category }: { category: Category }) {
                 alt=""
                 fill
                 sizes="140px"
+                quality={88}
                 className="object-cover group-hover:scale-105 transition-transform duration-400"
               />
               <div className="absolute inset-0 bg-black/20" />

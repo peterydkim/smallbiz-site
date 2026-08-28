@@ -55,6 +55,7 @@ export default function About() {
               width={900}
               height={1200}
               sizes="(max-width: 1024px) 50vw, 25vw"
+              quality={88}
               className={`w-full ${tall.ratio} object-cover`}
             />
             <div className="flex flex-col gap-3">
@@ -66,6 +67,7 @@ export default function About() {
                   width={800}
                   height={800}
                   sizes="(max-width: 1024px) 50vw, 25vw"
+              quality={88}
                   className={`w-full ${img.ratio} object-cover`}
                 />
               ))}
