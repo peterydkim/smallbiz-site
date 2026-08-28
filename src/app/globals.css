@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #c8d5c8;
+  --color-foreground: #141a14;
+  --color-secondary: #d8e3d8;
+  --color-card: #ffffff;
+  --color-accent: #2a5c2a;
+  --color-accent-foreground: #ffffff;
+  --color-muted: #e0e9e0;
+
+  --font-sans: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-barlow-condensed), var(--font-barlow), sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The design uses Barlow Condensed for every 900-weight display element:
+   headings, the wordmark, stat figures, process numbers, project titles. */
+h1, h2, h3, h4, h5, h6,
+.font-black {
+  font-family: var(--font-display);
+}
+
+/* Fixed 48px nav — keep anchor targets clear of it. */
+[id] {
+  scroll-margin-top: 4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
