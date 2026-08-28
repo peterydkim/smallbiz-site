@@ -79,6 +79,7 @@ Or spawn a focused agent:
 
 ```
 Use the site-cloner agent on https://theirsite.example/
+Use the figma-implementer agent on <figma-url?node-id=1-2>
 Use the launch-auditor agent before I point the domain
 ```
 
@@ -96,13 +97,15 @@ Use the launch-auditor agent before I point the domain
 │   │   ├── 03-site-architecture.md     Next.js layout + fidelity verification
 │   │   ├── 04-forms-and-seo.md         Netlify Forms, schema, the crawlability test
 │   │   ├── 05-deploy-netlify.md        deploy routes, DNS, launch-day checks
-│   │   └── 06-launch-punchlist.md      the trust-claims audit
+│   │   ├── 06-launch-punchlist.md      the trust-claims audit
+│   │   └── 07-figma-design-to-code.md  Track B — Figma MCP, tokens, gotchas
 │   └── scripts/
 │       ├── extract-design.js           tokens, typography, structure, geometry
 │       ├── verify-fidelity.js          numeric original-vs-rebuild diff
 │       └── optimize-media.sh           encode + measure peak saturation
 └── agents/
-    ├── site-cloner.md                  read-only design extraction
+    ├── site-cloner.md                  Track A — extract from a live URL
+    ├── figma-implementer.md            Track B — Figma file to tokens + spec
     └── launch-auditor.md               read-only pre-launch audit
 
 src/, public/                           the worked example (a real client site)
@@ -113,10 +116,16 @@ src/, public/                           the worked example (a real client site)
 ## The workflow
 
 ```
-0 diagnose  →  1 extract  →  2 media  →  3 build  →  4 verify
-                                                       ↓
-                       7 deploy  ←  6 punch list  ←  5 forms + SEO
+                  ┌ 1a  live site  → DOM extraction ┐
+0 diagnose  →─────┤                                 ├→ 2 media → 3 build → 4 verify
+                  └ 1b  Figma file → MCP + tokens   ┘                          ↓
+                            7 deploy  ←  6 punch list  ←  5 forms + SEO  ←─────┘
 ```
+
+**Two entry paths.** If the client has a real Figma file, read it over MCP — you recover the
+designer's *intent* (variables, components, constraints) rather than whatever values a builder
+compiled out. If all that exists is a published site, extract from the live DOM. Everything from
+Phase 2 on is identical.
 
 **Phase 0 is not optional.** The diagnosis changes what "done" means. Three commands:
 
@@ -130,9 +139,10 @@ curl -s https://TARGET/ | head -5                    # the generator, often in a
 
 ## Three things this gets right that most rebuilds don't
 
-**Read the DOM, don't redraw the design.** Modern no-code builders emit Tailwind. Their real
-class names, resolved design tokens and computed typography are all readable from the published
-page — faster and far more accurate than working from screenshots.
+**Prefer the design file; fall back to the DOM — never to screenshots.** A Figma file read over
+MCP gives you real design variables and component structure. Failing that, modern no-code
+builders emit Tailwind, so real class names and resolved tokens are readable from the published
+page. Redrawing from a screenshot is the last resort and it shows.
 
 **Average saturation is a liar.** At high CRF, H.264 quantizes chroma hard. Mean brightness and
 mean saturation barely move while *peak* saturation collapses — every average says fine and the

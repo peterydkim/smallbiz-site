@@ -4,13 +4,19 @@
 
 No-code builders often can't export usefully:
 
-| Platform | Code export? | Notes |
-|---|---|---|
-| Figma **Make** | Yes — zip from the code view | Plugins do **not** run in Make files |
-| Figma **Sites** / classic design | No HTML export | MCP `get_design_context` works on `/design/` only |
-| Wix / Squarespace | No | DOM extraction only |
-| Webflow | Yes (paid tier) | Export is usually clean |
-| Framer | No | DOM extraction only |
+| Platform | Code export? | Figma MCP? | Notes |
+|---|---|---|---|
+| Figma **Make** | Yes — zip from the code view | **Yes**, `get_design_context` with `nodeId: "0:1"` | Figma *plugins* do not run in Make files |
+| Figma **design** (`/design/`) | No HTML export | Yes — full tool set | Best path. See `07-figma-design-to-code.md` |
+| Figma **Sites** | No | No | DOM extraction only |
+| Wix / Squarespace | No | No | DOM extraction only |
+| Webflow | Yes (paid tier) | No | Export is usually clean |
+| Framer | No | No | DOM extraction only |
+
+**If a Figma file exists, prefer the MCP path over DOM extraction** — it gives you real design
+variables and component structure rather than compiled output. See
+`07-figma-design-to-code.md`. Use DOM extraction when there is no Figma file, or as a
+cross-check on the rendered result.
 
 Even when an export exists, reading the published DOM is often *faster* and gives you something
 an export can't: the **resolved** values — computed fonts, final token values, real geometry.

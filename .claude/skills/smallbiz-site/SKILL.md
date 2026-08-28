@@ -44,11 +44,29 @@ find ~/Desktop ~/Documents ~/Downloads -iname "*CLIENTNAME*" -maxdepth 4 2>/dev/
 
 → Full detail: `references/01-design-extraction.md`
 
-## Phase 1 — Extract the design from the live site
+## Phase 1 — Get the design. Two tracks.
+
+**Ask which one applies before you start.** They need different tools and produce different
+quality.
+
+### Track B — a Figma file exists (prefer this)
+
+A real Figma file carries variables, components and constraints, so you recover the designer's
+*intent* — a coherent token system — rather than whatever values a builder compiled out. If the
+client has a Figma file, use it.
+
+**You MUST load the `figma-design-to-code` skill before calling `get_design_context`.** Then
+`get_variable_defs` for tokens before writing any component, so nothing gets hardcoded.
+
+Note `get_design_context` works on Figma **Make** files too (`nodeId: "0:1"`), though the other
+Figma tools do not.
+
+→ `references/07-figma-design-to-code.md`
+
+### Track A — only a published site exists
 
 If the target renders with Tailwind (most modern no-code builders do), **do not rebuild by eye
-from screenshots.** Read the real class names, tokens and geometry out of the live DOM. It is
-faster and dramatically more accurate.
+from screenshots.** Read the real class names, tokens and geometry out of the live DOM.
 
 Use `scripts/extract-design.js` — it dumps a class-annotated outline, the resolved CSS custom
 properties, computed typography, and per-section geometry.
@@ -57,6 +75,9 @@ Screenshots are for sanity checks only. When a browser pane is hidden or unrespo
 screenshots silently return stale frames — trust `get_page_text` and computed styles instead.
 
 → `references/01-design-extraction.md`
+
+Both tracks converge on Phase 2. Phase 0 applies either way — even with a perfect Figma file, the
+crawlability and lead-capture diagnosis of the *current* site is what justifies the project.
 
 ## Phase 2 — Collect and compress media
 
@@ -89,7 +110,11 @@ and points you straight at the section.
 
 Use `scripts/verify-fidelity.js` in both pages, then diff.
 
-→ `references/03-site-architecture.md`
+On Track B there is no live page to diff against, so verify against the Figma frames instead:
+`get_screenshot` per section, and check every rendered color against `get_variable_defs` output.
+A color that isn't in the variable list is a bug.
+
+→ `references/03-site-architecture.md`, `references/07-figma-design-to-code.md`
 
 ## Phase 5 — Forms and SEO
 
@@ -117,15 +142,17 @@ regulator or customer can hold the owner to.
 
 Spawn these only when the user asks, or when the phase genuinely warrants a focused pass:
 
-- `site-cloner` — Phase 1–2, design and asset extraction from a live URL
+- `site-cloner` — Phase 1 Track A, design and asset extraction from a live URL
+- `figma-implementer` — Phase 1 Track B, Figma file → tokens + component spec
 - `launch-auditor` — Phase 6, the trust-claims and SEO audit (read-only)
 
 ## Order of operations that actually works
 
 ```
-0 diagnose  →  1 extract  →  2 media  →  3 build  →  4 verify
-                                                       ↓
-                       7 deploy  ←  6 punch list  ←  5 forms + SEO
+                  ┌ 1a  live site  → DOM extraction ┐
+0 diagnose  →─────┤                                 ├→ 2 media → 3 build → 4 verify
+                  └ 1b  Figma file → MCP + tokens   ┘                          ↓
+                            7 deploy  ←  6 punch list  ←  5 forms + SEO  ←─────┘
 ```
 
 Do not skip 0. The diagnosis changes what "done" means — a site that already serves good HTML
