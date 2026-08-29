@@ -19,7 +19,7 @@ const barlowCondensed = Barlow_Condensed({
   display: "swap",
 });
 
-const SITE_URL = "https://aplusservices.example.com"; // TODO(peter): set to the real domain
+const SITE_URL = "https://www.aplusservicesva.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

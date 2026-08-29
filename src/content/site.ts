@@ -245,11 +245,12 @@ export const aboutSection = {
       body: "Most residential projects delivered in 2–4 weeks.",
     },
     {
-      // TODO(peter): CGC#1234567 is placeholder filler, and "CGC" is a Florida
-      // license prefix. Replace with your real MD MHIC / VA / DC numbers
-      // before this goes on the custom domain.
+      // The published Figma design carried "CGC#1234567" here — sequential
+      // filler, and CGC is a Florida prefix on an MD/VA/DC contractor. Removed
+      // rather than published. TODO(peter): add the real MHIC / VA / DC numbers
+      // and confirm the coverage figure, then restore the specifics.
       title: "Fully Licensed & Insured",
-      body: "CGC#1234567 · $2M liability coverage · Worker's comp included.",
+      body: "Licensed general contractor · Fully insured · Worker's comp included.",
     },
     {
       // TODO(peter): verify this award before launch.
