@@ -32,17 +32,19 @@ export const hero = {
   secondaryCta: { label: "See Our Work", href: "#projects" },
 };
 
-// TODO(peter): verify every one of these before launch — each is a public claim.
+// Every tile here is a fact the business can point at on demand. The original
+// design carried 500+ projects / 98% satisfaction / $2M+ delivered; those were
+// removed because nothing substantiates them, not because they are untrue.
 export const stats = [
-  { value: "500+", label: "Projects Completed" },
-  { value: "18", label: "Years in Business" },
-  { value: "98%", label: "Client Satisfaction" },
-  { value: "$2M+", label: "Value Delivered" },
+  { value: String(company.established), label: "Established" },
+  { value: "MD · VA · DC", label: "Service Area" },
+  { value: "24 HR", label: "Emergency Response" },
+  { value: "Free", label: "Estimates" },
 ];
 
 export const showcase = {
   eyebrow: "Overview",
-  year: "· 2024",
+  year: `· ${new Date().getFullYear()}`,
   title: "A+ Construction Services — Project Showcase",
   slides: [1, 2, 3, 4, 5, 6, 7].map((n) => ({
     src: `/videos/showcase-${n}.mp4`,
@@ -238,7 +240,7 @@ export const aboutSection = {
   eyebrow: "Why A+ Construction Services",
   titleLines: ["The standard", "others measure", "against."],
   body:
-    "Licensed, insured, and award-winning general contractor serving Maryland, Virginia, and Washington DC since 2006. Every project is led by a senior foreman with 10+ years of field experience and backed by a 5-year workmanship warranty.",
+    "Licensed and insured general contractor serving Maryland, Virginia, and Washington DC since 2006. Every project is led by an experienced foreman and backed by a workmanship warranty.",
   features: [
     {
       title: "Fast Turnaround",
@@ -253,9 +255,11 @@ export const aboutSection = {
       body: "Licensed general contractor · Fully insured · Worker's comp included.",
     },
     {
-      // TODO(peter): verify this award before launch.
-      title: "Award-Winning Work",
-      body: "NARI Excellence in Remodeling Award — 2022 & 2023.",
+      // Was "NARI Excellence in Remodeling Award — 2022 & 2023". Removed: the
+      // award could not be verified. This replacement is supported by the
+      // testimonials below, which describe repeat work for the same clients.
+      title: "Repeat & Referral Work",
+      body: "Most projects come from returning clients and their referrals.",
     },
   ],
   images: [

@@ -119,7 +119,7 @@ and on the web at [claude.ai/code](https://claude.ai/code). The media scripts ne
 wherever they run.
 
 ```bash
-git clone https://github.com/YOURNAME/smallbiz-site.git
+git clone https://github.com/peterydkim/smallbiz-site.git
 cd smallbiz-site
 claude
 ```
