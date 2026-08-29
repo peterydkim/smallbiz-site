@@ -38,9 +38,49 @@ await fetch("/__forms.html", {
 Requirements: matching `name` on the real form, a hidden `form-name` input, a honeypot
 (`bot-field`) — contractor and trades sites attract heavy spam.
 
-**Then prove it.** Enable notifications (*Forms → your form → Notifications*) and submit one real
-lead from a phone on cellular. Until a submission has landed in the owner's inbox, the form is
-not done.
+**Then prove it — through the UI, not the endpoint.** This distinction is the whole point and it
+is easy to get wrong:
+
+```bash
+# This proves the transport works. It does NOT prove the form works.
+curl -X POST https://SITE/__forms.html --data-urlencode "form-name=..." ...
+```
+
+A curl POST bypasses the React component entirely. On this project the endpoint returned 200 and
+submissions were being stored correctly, while every visitor who clicked Send saw **"That didn't
+send."** The lead was captured and the customer was told it had failed — the worst possible
+combination, and invisible to endpoint testing.
+
+The cause is a React trap worth knowing on its own:
+
+```tsx
+const res = await fetch("/__forms.html", { ... });
+setStatus("sent");
+e.currentTarget.reset();   // BUG: currentTarget is null after an await
+```
+
+React nulls `currentTarget` once the handler's synchronous phase ends, so this throws a
+`TypeError` *after* a successful POST. The `catch` then reports failure. Capture the node first:
+
+```tsx
+const form = e.currentTarget;   // before any await
+// ...
+form.reset();
+setStatus("sent");
+```
+
+The tell in the data: **duplicate submissions seconds apart from the same browser.** That is a
+visitor who saw an error and pressed Send again. If you see that pattern, the transport is fine
+and the success path is broken.
+
+**Verification that actually counts:**
+
+1. Load the real domain in a browser and submit the form by clicking the button.
+2. Assert the success element renders and the error element does not.
+3. Assert the fields cleared.
+4. Confirm the submission appears in the dashboard.
+5. Enable notifications (*Forms → your form → Notifications*) and confirm one lands in the
+   owner's inbox, from a phone on cellular.
 
 Confirm the markup survives the build:
 
