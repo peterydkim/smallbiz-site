@@ -41,8 +41,13 @@ export default function Contact() {
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    // Capture the form node BEFORE any await. React nulls out `currentTarget`
+    // once the synchronous phase of the handler ends, so touching it after the
+    // fetch throws — which the catch below would report as a failed send even
+    // though the submission already succeeded.
+    const form = e.currentTarget;
     setStatus("sending");
-    const data = new FormData(e.currentTarget);
+    const data = new FormData(form);
     data.set("form-name", FORM_NAME);
     try {
       const res = await fetch("/__forms.html", {
@@ -51,8 +56,8 @@ export default function Contact() {
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
       if (!res.ok) throw new Error(String(res.status));
+      form.reset();
       setStatus("sent");
-      e.currentTarget.reset();
     } catch {
       setStatus("error");
     }
