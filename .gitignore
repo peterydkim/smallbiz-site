@@ -42,3 +42,6 @@ next-env.d.ts
 
 # local
 /private
+
+# Netlify CLI local link state — machine-specific, never commit
+.netlify
