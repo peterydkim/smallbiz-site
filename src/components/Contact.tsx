@@ -142,9 +142,24 @@ export default function Contact() {
               </div>
             </div>
 
-            <div>
-              <label className={labelClass} htmlFor="email">Email</label>
-              <input id="email" name="email" type="email" required placeholder="your@email.com" className={fieldClass} />
+            <div className="grid md:grid-cols-2 gap-4">
+              <div>
+                <label className={labelClass} htmlFor="email">Email</label>
+                <input id="email" name="email" type="email" required placeholder="your@email.com" className={fieldClass} />
+              </div>
+              <div>
+                <label className={labelClass} htmlFor="phone">Phone</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  required
+                  inputMode="tel"
+                  autoComplete="tel"
+                  placeholder="(703) 555-0123"
+                  className={fieldClass}
+                />
+              </div>
             </div>
 
             <div>

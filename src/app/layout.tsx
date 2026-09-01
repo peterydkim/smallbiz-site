@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "A+ Construction Services | Remodeling & General Contracting in MD, VA & DC",
   description:
-    "Licensed general contractor serving Maryland, Virginia and Washington DC since 2006. Kitchen, bathroom and basement remodeling, roofing, decks, water damage restoration. Free estimates within 24 hours.",
+    "Insured general contractor serving Maryland, Virginia and Washington DC since 2006. Kitchen, bathroom and basement remodeling, roofing, decks, water damage restoration. Free estimates within 24 hours.",
   keywords: [
     "general contractor Maryland",
     "kitchen remodeling Rockville MD",
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
     siteName: company.name,
     title: "A+ Construction Services — Built for how you live.",
     description:
-      "Licensed, insured general contractor serving Maryland, Virginia and DC since 2006. Free estimates within 24 hours.",
+      "Insured general contractor serving Maryland, Virginia and DC since 2006. Free estimates within 24 hours.",
     images: ["/images/kitchen-quartz-island.jpg"],
   },
   twitter: {
     card: "summary_large_image",
     title: "A+ Construction Services — Built for how you live.",
     description:
-      "Licensed, insured general contractor serving Maryland, Virginia and DC since 2006.",
+      "Insured general contractor serving Maryland, Virginia and DC since 2006.",
     images: ["/images/kitchen-quartz-island.jpg"],
   },
   robots: { index: true, follow: true },

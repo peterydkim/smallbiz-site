@@ -5,10 +5,10 @@ export const company = {
   name: "A+ Construction Services",
   legal: "A+ Construction Services, LLC",
   short: "A+",
-  tagline: "Licensed general contractor serving Maryland, Virginia & DC since 2006.",
+  tagline: "Insured general contractor serving Maryland, Virginia & DC since 2006.",
   phone: "(703) 200-9060",
   phoneHref: "tel:+17032009060",
-  email: "apservices@gmail.com",
+  email: "apservices7924@gmail.com",
   serviceArea: "Maryland · Virginia · DC",
   hours: "Mon–Fri 7am–6pm",
   established: 2006,
@@ -226,7 +226,7 @@ export const processSection = {
     {
       n: "03",
       title: "Precision Build",
-      body: "Licensed crews execute on schedule with daily progress updates.",
+      body: "Our crews execute on schedule with daily progress updates.",
     },
     {
       n: "04",
@@ -240,7 +240,7 @@ export const aboutSection = {
   eyebrow: "Why A+ Construction Services",
   titleLines: ["The standard", "others measure", "against."],
   body:
-    "Licensed and insured general contractor serving Maryland, Virginia, and Washington DC since 2006. Every project is led by an experienced foreman and backed by a workmanship warranty.",
+    "Insured general contractor serving Maryland, Virginia, and Washington DC since 2006. Every project is led by an experienced foreman and backed by a workmanship warranty.",
   features: [
     {
       title: "Fast Turnaround",
@@ -248,11 +248,11 @@ export const aboutSection = {
     },
     {
       // The published Figma design carried "CGC#1234567" here — sequential
-      // filler, and CGC is a Florida prefix on an MD/VA/DC contractor. Removed
-      // rather than published. TODO(peter): add the real MHIC / VA / DC numbers
-      // and confirm the coverage figure, then restore the specifics.
-      title: "Fully Licensed & Insured",
-      body: "Licensed general contractor · Fully insured · Worker's comp included.",
+      // filler, and a Florida prefix on an MD/VA/DC contractor. Removed.
+      // The business is not licensed, so every "licensed" claim was dropped
+      // from the site as well. Insurance claims are retained as accurate.
+      title: "Fully Insured",
+      body: "Fully insured · Worker's comp included · Free written estimates.",
     },
     {
       // Was "NARI Excellence in Remodeling Award — 2022 & 2023". Removed: the

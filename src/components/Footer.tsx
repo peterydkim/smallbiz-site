@@ -63,7 +63,7 @@ export default function Footer() {
             © {new Date().getFullYear()} {company.legal}. All rights reserved.
           </span>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service", "Licensing"].map((l) => (
+            {["Privacy Policy", "Terms of Service"].map((l) => (
               <span
                 key={l}
                 className="text-sm text-foreground/30 font-mono"
