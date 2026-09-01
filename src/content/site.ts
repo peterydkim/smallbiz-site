@@ -5,7 +5,7 @@ export const company = {
   name: "A+ Construction Services",
   legal: "A+ Construction Services, LLC",
   short: "A+",
-  tagline: "Insured general contractor serving Maryland, Virginia & DC since 2006.",
+  tagline: "General contractor serving Maryland, Virginia & DC since 2006.",
   phone: "(703) 200-9060",
   phoneHref: "tel:+17032009060",
   email: "apservices7924@gmail.com",
@@ -240,19 +240,20 @@ export const aboutSection = {
   eyebrow: "Why A+ Construction Services",
   titleLines: ["The standard", "others measure", "against."],
   body:
-    "Insured general contractor serving Maryland, Virginia, and Washington DC since 2006. Every project is led by an experienced foreman and backed by a workmanship warranty.",
+    "General contractor serving Maryland, Virginia, and Washington DC since 2006. Every project is led by an experienced foreman and backed by a workmanship warranty.",
   features: [
     {
       title: "Fast Turnaround",
       body: "Most residential projects delivered in 2–4 weeks.",
     },
     {
-      // The published Figma design carried "CGC#1234567" here — sequential
-      // filler, and a Florida prefix on an MD/VA/DC contractor. Removed.
-      // The business is not licensed, so every "licensed" claim was dropped
-      // from the site as well. Insurance claims are retained as accurate.
-      title: "Fully Insured",
-      body: "Fully insured · Worker's comp included · Free written estimates.",
+      // This slot has held, in order: "CGC#1234567" (sequential filler with a
+      // Florida prefix), then "Fully Licensed & Insured", then "Fully Insured".
+      // All removed — the business holds no license, and no credential claim
+      // here is one anyone wants to stand behind. Replaced with a promise
+      // about how the work is run, which needs no paperwork to be true.
+      title: "No Surprises",
+      body: "Clear estimates up front, steady updates throughout, and no pressure to decide.",
     },
     {
       // Was "NARI Excellence in Remodeling Award — 2022 & 2023". Removed: the
